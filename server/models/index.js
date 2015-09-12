@@ -16,8 +16,13 @@ module.exports = {
 
   users: {
     // Ditto as above.
-    get: function () {},
-    post: function () {}
+    get: function (callback) {
+      db.connection.query('SELECT * from users', callback);
+
+    },
+    post: function (username) {
+      db.connection.query('INSERT INTO users (user_name) VALUES (\'' + username + '\')');
+    }
   }
 };
 

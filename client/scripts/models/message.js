@@ -4,7 +4,8 @@ app.Message = Backbone.Model.extend({
   url: '/classes/messages',
   defaults: {
     chat: '',
-    'created_at': ''
+    'created_at': '',
+    username: ''
   },
 
   parse: function (res) {
