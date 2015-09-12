@@ -14,23 +14,26 @@ module.exports = {
         rows.forEach(function(row) {
           results.push({
             text: row.chat,
+            username: row.user_name
           });
         });
-
+        console.log('these are the results', results);
         res.send(results);
       });
     },
      // a function which handles a get request for all messages
     post: function(req, res) {
+      // handles user & message from client
+
       var chat = req.body.text;
-      // var user_name = req.body.username;
+      var user_name = req.body.username;
       // models.users.post(user_name);
-      models.messages.post(chat);
+      models.messages.post(chat, user_name);
     } // a function which handles posting a message to the database
   },
 
+  // only for tests
   users: {
-    // Ditto as above
     get: function(req, res) {
       var results = [];
       models.users.get(function(err, rows, field) {
