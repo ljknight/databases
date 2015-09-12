@@ -27,8 +27,16 @@ module.exports = {
 
       var chat = req.body.text;
       var user_name = req.body.username;
+      models.users.getUniqueUser(user_name, function(err, rows, field) {
+        if (rows.length === 0) {
+          models.messages.post(chat, user_name, false);
+        } else {
+          user_name = rows[0].id;
+          models.messages.post(chat, user_name, true);
+        }
+      });
       // models.users.post(user_name);
-      models.messages.post(chat, user_name);
+      
     } // a function which handles posting a message to the database
   },
 
