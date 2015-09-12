@@ -1,3 +1,5 @@
+/*jshint quotmark: false */
+
 var express = require('express');
 var db = require('./db');
 
@@ -11,8 +13,16 @@ var router = require('./routes.js');
 var app = express();
 module.exports.app = app;
 
+app.use(express.static('../client'));
+
+app.get('/', function (req, res) {
+  res.send();
+});
+
 // Set what we are listening on.
 app.set("port", 3000);
+
+db.connection.connect();
 
 // Logging and parsing
 app.use(morgan('dev'));

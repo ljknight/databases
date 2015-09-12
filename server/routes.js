@@ -1,3 +1,5 @@
+/*jshint quotmark: false */
+
 var controllers = require('./controllers');
 var router = require('express').Router();
 
