@@ -8,7 +8,7 @@ var morgan = require('morgan');
 var parser = require('body-parser');
 
 // Router
-var router = require('./routes.js');
+var router = require('./routes.js')
 
 var app = express();
 module.exports.app = app;
@@ -22,7 +22,13 @@ app.get('/', function (req, res) {
 // Set what we are listening on.
 app.set("port", 3000);
 
-db.connection.connect();
+// db.connection.connect();
+
+
+/* .sync() makes Sequelize create the database table for us if it doesn't
+ *  exist already: */
+
+
 
 // Logging and parsing
 app.use(morgan('dev'));

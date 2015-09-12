@@ -31,8 +31,6 @@ CREATE TABLE messages (
     REFERENCES rooms(id)
 );
 
-/* Create other tables and define schemas for them here! */
-
 
 
 

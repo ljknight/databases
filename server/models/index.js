@@ -6,7 +6,7 @@ module.exports = {
     get: function(callback) {
       // inner join
       // db.connection.query('SELECT * from messages', callback);
-      db.connection.query('SELECT m.chat, u.user_name FROM messages m INNER JOIN users u ON (m.user_id=u.id)', callback);
+     
 
 
     }, // a function which produces all the messages
@@ -14,11 +14,11 @@ module.exports = {
       // transaction with messages + user
       if (!exists) {
         db.connection.query('START TRANSACTION;');
-        db.connection.query('INSERT INTO users (user_name) VALUES (\'' + username + '\');');
+        db.connection.query('INSERT INTO users (user_name) VALUES (\'' + username + '\');');  // username = user_name
         db.connection.query('INSERT INTO messages (user_id, chat) VALUES (last_insert_id(), \'' + chat + '\');');
         db.connection.query('COMMIT;');
       } else {
-        db.connection.query('INSERT INTO messages (user_id, chat) VALUES (' + username + ', \'' + chat + '\');');
+        db.connection.query('INSERT INTO messages (user_id, chat) VALUES (' + username + ', \'' + chat + '\');');  // username = user_id 
       }
 
 
