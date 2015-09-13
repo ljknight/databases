@@ -4,12 +4,8 @@ var db = require('../db');
 module.exports = {
   messages: {
     get: function(callback) {
-      // inner join
-      // db.connection.query('SELECT * from messages', callback);
-     
-
-
-    }, // a function which produces all the messages
+      db.connection.query('SELECT m.chat, u.user_name FROM messages m INNER JOIN users u ON (m.user_id=u.id)', callback);
+    }, 
     post: function(chat, username, exists) {  // username can be name or ID
       // transaction with messages + user
       if (!exists) {
@@ -20,15 +16,12 @@ module.exports = {
       } else {
         db.connection.query('INSERT INTO messages (user_id, chat) VALUES (' + username + ', \'' + chat + '\');');  // username = user_id 
       }
-
-
-    } // a function which can be used to insert a message into the database
+    } 
   },
 
   users: {
     get: function(callback) {
       db.connection.query('SELECT * from users', callback);
-
     },
 
     getUniqueUser: function(user, callback) {
